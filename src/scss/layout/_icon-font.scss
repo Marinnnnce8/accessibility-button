@@ -39,37 +39,37 @@
 	@if $filename == external-link {
 		$char: '\E004';
 	}
-	@if $filename == font {
+	@if $filename == filter-grayscale {
 		$char: '\E005';
 	}
-	@if $filename == grayscale {
+	@if $filename == high-contrast {
 		$char: '\E006';
 	}
-	@if $filename == high-contrast {
+	@if $filename == increase {
 		$char: '\E007';
 	}
-	@if $filename == increase {
+	@if $filename == instagram-logo {
 		$char: '\E008';
 	}
-	@if $filename == instagram-logo {
+	@if $filename == light-background {
 		$char: '\E009';
 	}
-	@if $filename == light-background {
+	@if $filename == link {
 		$char: '\E00A';
 	}
-	@if $filename == link {
+	@if $filename == live-streaming {
 		$char: '\E00B';
 	}
-	@if $filename == live-streaming {
+	@if $filename == negative-contrast {
 		$char: '\E00C';
 	}
-	@if $filename == negative-contrast {
+	@if $filename == play-button-arrowhead {
 		$char: '\E00D';
 	}
-	@if $filename == play-button-arrowhead {
+	@if $filename == quote {
 		$char: '\E00E';
 	}
-	@if $filename == quote {
+	@if $filename == readable-font {
 		$char: '\E00F';
 	}
 	@if $filename == reset {
@@ -121,11 +121,8 @@
 .font-external-link {
 	@include font(external-link);
 }
-.font-font {
-	@include font(font);
-}
-.font-grayscale {
-	@include font(grayscale);
+.font-filter-grayscale {
+	@include font(filter-grayscale);
 }
 .font-high-contrast {
 	@include font(high-contrast);
@@ -153,6 +150,9 @@
 }
 .font-quote {
 	@include font(quote);
+}
+.font-readable-font {
+	@include font(readable-font);
 }
 .font-reset {
 	@include font(reset);
