@@ -1,0 +1,170 @@
+.accessibility {
+    position: fixed;
+    left: -200px;
+    max-width: 200px;
+    background-color: $white;
+    width: 100%;
+    transition: .7s ease-in;
+    z-index: 1000;
+    top: 190px !important;// sass-lint:disable-line no-important
+
+    &.accessibility-active {
+        transform: translateX(100%);
+    }
+}
+
+.accessibility-button {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: $blue;
+    width: 56px;
+    height: 56px;
+
+    &::after {
+        font-family: 'svgicons';
+        content: font-char($access);
+        color: $white;
+        font-size: 36px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+
+    @include hover {
+        box-shadow: 0 0 18px -1px rgba($black, .3);
+    }
+}
+
+.accessibility-toolbar {
+    box-shadow: 0 0 18px -1px rgba($black, .3);
+    border: 1px solid $blue;
+    padding: 15px;
+}
+
+.accessibility-title {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 18px;
+    color: $black;
+    font-weight: $bold;
+}
+
+.accessibility-buttons {
+    padding: 0;
+    margin: 0;
+    transition: none;
+
+    li {
+        list-style-type: none;
+        font-size: 80%;
+
+        &:not(:last-of-type) {
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            color: $black;
+            position: relative;
+            line-height: 1;
+            transition: none;
+            text-align: left;
+
+            span:first-of-type::before {
+                margin-right: 7px;
+                display: inline-block;
+                font-family: 'svgicons';
+                color: inherit;
+                font-size: inherit;
+                vertical-align: top;
+            }
+        }
+
+        &:first-of-type button span:first-of-type::before {
+            content: font-char($increase);
+        }
+
+        &:nth-of-type(2) button span:first-of-type::before {
+            content: font-char($decrease);
+        }
+
+        &:nth-of-type(3) button span:first-of-type::before {
+            content: font-char($grayscale);
+        }
+
+        &:nth-of-type(4) button span:first-of-type::before {
+            content: font-char($high-contrast);
+        }
+
+        &:nth-of-type(5) button span:first-of-type::before {
+            content: font-char($negative-contrast);
+        }
+
+        &:nth-of-type(6) button span:first-of-type::before {
+            content: font-char($light-background);
+        }
+
+        &:nth-of-type(7) button span:first-of-type::before {
+            content: font-char($links-underline);
+        }
+
+        &:nth-of-type(8) button span:first-of-type::before {
+            content: font-char($readable-font);
+        }
+
+        &:last-of-type button span:first-of-type::before {
+            content: font-char($reset);
+        }
+    }
+}
+
+$sizes: 130,
+140,
+150,
+160,
+170,
+180,
+190,
+200;
+
+@each $size in $sizes {
+
+    body.accessibility-resize-font-#{$size},
+    body.accessibility-resize-font-#{$size} p,
+    body.accessibility-resize-font-#{$size} li,
+    body.accessibility-resize-font-#{$size} label,
+    body.accessibility-resize-font-#{$size} input,
+    body.accessibility-resize-font-#{$size} select,
+    body.accessibility-resize-font-#{$size} textarea,
+    body.accessibility-resize-font-#{$size} legend,
+    body.accessibility-resize-font-#{$size} code,
+    body.accessibility-resize-font-#{$size} pre,
+    body.accessibility-resize-font-#{$size} dd,
+    body.accessibility-resize-font-#{$size} dt,
+    body.accessibility-resize-font-#{$size} span:not(.accessibility-title),
+    body.accessibility-resize-font-#{$size} blockquote {
+        font-size: #{$size}% !important; // sass-lint:disable-line no-important
+    }
+}
+
+body.accessibility-grayscale {
+    filter: grayscale(1) !important; // sass-lint:disable-line no-important
+}
+
+body.accessibility-light-background,
+body.accessibility-light-background *:not(.accessibility):not(.accessibility-item) {
+    background: $white !important; // sass-lint:disable-line no-important
+    color: $black !important; // sass-lint:disable-line no-important
+}
+
+body.accessibility-links-underline a,
+body.accessibility-links-underline a * {
+    text-decoration: underline !important; // sass-lint:disable-line no-important
+}
+
+body.accessibility-readable-font,
+body.accessibility-readable-font *:not(i):not(span) {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important; // sass-lint:disable-line no-important
+}

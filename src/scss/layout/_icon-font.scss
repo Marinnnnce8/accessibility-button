@@ -1,0 +1,175 @@
+@font-face {
+	font-family: 'svgicons';
+	src: url('../fonts/svgicons.woff2') format('woff2'),
+		url('../fonts/svgicons.woff') format('woff'),
+		url('../fonts/svgicons.ttf') format('truetype');
+		font-display: swap;
+}
+
+@mixin font-styles {
+	font-family: 'svgicons';
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+	display: block;
+	line-height: 1;
+}
+
+%font {
+	@include font-styles;
+}
+
+@function font-char($filename) {
+	$char: "";
+
+	@if $filename == chevron-arrow-down {
+		$char: '\E001';
+	}
+	@if $filename == decrease {
+		$char: '\E002';
+	}
+	@if $filename == envelope {
+		$char: '\E003';
+	}
+	@if $filename == external-link {
+		$char: '\E004';
+	}
+	@if $filename == font {
+		$char: '\E005';
+	}
+	@if $filename == grayscale {
+		$char: '\E006';
+	}
+	@if $filename == high-contrast {
+		$char: '\E007';
+	}
+	@if $filename == increase {
+		$char: '\E008';
+	}
+	@if $filename == instagram-logo {
+		$char: '\E009';
+	}
+	@if $filename == light-background {
+		$char: '\E00A';
+	}
+	@if $filename == link {
+		$char: '\E00B';
+	}
+	@if $filename == live-streaming {
+		$char: '\E00C';
+	}
+	@if $filename == negative-contrast {
+		$char: '\E00D';
+	}
+	@if $filename == play-button-arrowhead {
+		$char: '\E00E';
+	}
+	@if $filename == quote {
+		$char: '\E00F';
+	}
+	@if $filename == reset {
+		$char: '\E010';
+	}
+	@if $filename == right-arrow {
+		$char: '\E011';
+	}
+	@if $filename == rounded-corner-left {
+		$char: '\E012';
+	}
+	@if $filename == rounded-corner-right {
+		$char: '\E013';
+	}
+	@if $filename == time {
+		$char: '\E014';
+	}
+	@if $filename == universal-access {
+		$char: '\E015';
+	}
+
+	@return $char;
+}
+
+@mixin font($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %font;
+		} @else {
+			@include font-styles;
+		}
+		content: font-char($filename);
+	}
+}
+
+[class*='font-ico'] {
+	display: inline-block;
+}
+
+.font-chevron-arrow-down {
+	@include font(chevron-arrow-down);
+}
+.font-decrease {
+	@include font(decrease);
+}
+.font-envelope {
+	@include font(envelope);
+}
+.font-external-link {
+	@include font(external-link);
+}
+.font-font {
+	@include font(font);
+}
+.font-grayscale {
+	@include font(grayscale);
+}
+.font-high-contrast {
+	@include font(high-contrast);
+}
+.font-increase {
+	@include font(increase);
+}
+.font-instagram-logo {
+	@include font(instagram-logo);
+}
+.font-light-background {
+	@include font(light-background);
+}
+.font-link {
+	@include font(link);
+}
+.font-live-streaming {
+	@include font(live-streaming);
+}
+.font-negative-contrast {
+	@include font(negative-contrast);
+}
+.font-play-button-arrowhead {
+	@include font(play-button-arrowhead);
+}
+.font-quote {
+	@include font(quote);
+}
+.font-reset {
+	@include font(reset);
+}
+.font-right-arrow {
+	@include font(right-arrow);
+}
+.font-rounded-corner-left {
+	@include font(rounded-corner-left);
+}
+.font-rounded-corner-right {
+	@include font(rounded-corner-right);
+}
+.font-time {
+	@include font(time);
+}
+.font-universal-access {
+	@include font(universal-access);
+}
+
