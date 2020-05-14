@@ -10,6 +10,7 @@ files:
     - 'src/scss/layout/_icon-font.scss'
     - 'src/scss/base/fonts.scss'
     - 'src/scss/nb/*.scss'
+    - 'src/scss/modules/accessibility.scss'
     - 'src/scss/theme/*.scss'
 
 rules:

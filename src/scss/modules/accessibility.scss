@@ -2,18 +2,22 @@
     position: fixed;
     left: -200px;
     max-width: 200px;
-    background-color: $white;
+    background-color: #fff;
     width: 100%;
     transition: transform .35s ease-out;
     z-index: 1000;
-    top: 190px !important; // sass-lint:disable-line no-important
+    top: 180px !important;
 
     &.accessibility-active {
         transform: translateX(100%);
     }
 
+    @media (max-width: 767px) {
+        top: 150px !important;
+    }
+
     @media print {
-        display: none !important; // sass-lint:disable-line no-important
+        display: none !important;
     }
 }
 
@@ -21,14 +25,14 @@
     position: absolute;
     top: 0;
     left: 100%;
-    background-color: $blue;
+    background-color: #334be8;
     width: 56px;
     height: 56px;
 
     &::after {
         font-family: 'svgicons';
         content: font-char($access);
-        color: $white;
+        color: #fff;
         font-size: 36px;
         left: 50%;
         top: 50%;
@@ -37,23 +41,27 @@
     }
 
     @include hover {
-        box-shadow: 0 0 18px -1px rgba($black, .3);
+        box-shadow: 0 0 18px -1px rgba(#000, .3);
     }
 }
 
 .accessibility-toolbar {
-    box-shadow: 0 0 18px -1px rgba($black, .3);
-    border: 1px solid $blue;
+    box-shadow: 0 0 18px -1px rgba(#000, .3);
+    border: 1px solid #334be8;
     padding: 20px 0;
 }
 
 .accessibility-title {
     display: block;
     font-size: 18px;
-    color: $black;
-    font-weight: $bold;
+    color: #000;
+    font-weight: bold;
     padding: 0 15px 15px;
     margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+        margin-bottom: 0;
+    }
 }
 
 .accessibility-buttons {
@@ -66,7 +74,7 @@
 
         button {
             display: block;
-            color: $black;
+            color: #000;
             line-height: 1.3;
             text-align: left;
             width: 100%;
@@ -119,16 +127,30 @@
             content: font-char($reset);
         }
     }
-}
 
-.accessibility-button-active {
-    background-color: $blue;
-
-    span {
-        color: $white;
+    @media (max-width: 767px) {
+        li button {
+            padding: 7px 12px;
+        }
     }
 }
 
+@supports (-webkit-touch-callout: none) {
+    .accessibility-buttons li {
+        margin-top: -2px;
+    }
+}
+
+.accessibility-button-active {
+    background-color: #334be8;
+
+    span {
+        color: #fff;
+        font-weight: bold;
+    }
+}
+
+/* Font resizing */
 $sizes: 130,
 140,
 150,
@@ -154,44 +176,40 @@ $sizes: 130,
     body.accessibility-resize-font-#{$size} dt,
     body.accessibility-resize-font-#{$size} span:not(.accessibility-title),
     body.accessibility-resize-font-#{$size} blockquote {
-        font-size: #{$size}% !important; // sass-lint:disable-line no-important
+        font-size: #{$size}% !important;
     }
 }
 
+/* Grayscale filter */
 body.accessibility-grayscale {
-    filter: grayscale(1) !important; // sass-lint:disable-line no-important
+    filter: grayscale(1) !important;
 }
 
+/* High contrast filter */
 body.accessibility-high-contrast * {
-    box-shadow: none !important; // sass-lint:disable-line no-important
-    transition: none !important; // sass-lint:disable-line no-important
+    box-shadow: none !important;
+    transition: none !important;
 }
 
 body.accessibility-high-contrast :focus {
-    outline: thin dotted !important; // sass-lint:disable-line no-important
+    outline: thin dotted !important;
 }
 
 body.accessibility-high-contrast a,
 body.accessibility-high-contrast article,
 body.accessibility-high-contrast aside,
-body.accessibility-high-contrast basefont,
 body.accessibility-high-contrast bdi,
-body.accessibility-high-contrast big,
-body.accessibility-high-contrast blink,
 body.accessibility-high-contrast blockquote,
 body.accessibility-high-contrast body,
 body.accessibility-high-contrast button,
 body.accessibility-high-contrast canvas,
 body.accessibility-high-contrast caption,
-body.accessibility-high-contrast center,
 body.accessibility-high-contrast code,
 body.accessibility-high-contrast col,
 body.accessibility-high-contrast colgroup,
-body.accessibility-high-contrast command,
 body.accessibility-high-contrast dd,
 body.accessibility-high-contrast del,
 body.accessibility-high-contrast details,
-body.accessibility-high-contrast dir,
 body.accessibility-high-contrast div,
 body.accessibility-high-contrast dl,
 body.accessibility-high-contrast dt,
@@ -207,27 +225,21 @@ body.accessibility-high-contrast html,
 body.accessibility-high-contrast iframe,
 body.accessibility-high-contrast img,
 body.accessibility-high-contrast input,
-body.accessibility-high-contrast input::placeholder,
 body.accessibility-high-contrast ins,
 body.accessibility-high-contrast kbd,
 body.accessibility-high-contrast label,
 body.accessibility-high-contrast legend,
 body.accessibility-high-contrast li,
-body.accessibility-high-contrast listing,
 body.accessibility-high-contrast main,
 body.accessibility-high-contrast mark,
-body.accessibility-high-contrast marquee,
 body.accessibility-high-contrast menu,
 body.accessibility-high-contrast meter,
-body.accessibility-high-contrast multicol,
 body.accessibility-high-contrast nav,
-body.accessibility-high-contrast nobr,
 body.accessibility-high-contrast object,
 body.accessibility-high-contrast ol,
 body.accessibility-high-contrast option,
 body.accessibility-high-contrast output,
 body.accessibility-high-contrast p,
-body.accessibility-high-contrast plaintext,
 body.accessibility-high-contrast pre,
 body.accessibility-high-contrast progress,
 body.accessibility-high-contrast q,
@@ -240,8 +252,7 @@ body.accessibility-high-contrast samp,
 body.accessibility-high-contrast section,
 body.accessibility-high-contrast select,
 body.accessibility-high-contrast small,
-body.accessibility-high-contrast span:not(.accessibility-title),
-body.accessibility-high-contrast strike,
+body.accessibility-high-contrast span,
 body.accessibility-high-contrast sub,
 body.accessibility-high-contrast summary,
 body.accessibility-high-contrast sup,
@@ -255,12 +266,10 @@ body.accessibility-high-contrast th,
 body.accessibility-high-contrast thead,
 body.accessibility-high-contrast time,
 body.accessibility-high-contrast tr,
-body.accessibility-high-contrast tt,
 body.accessibility-high-contrast ul,
 body.accessibility-high-contrast var,
-body.accessibility-high-contrast video,
-body.accessibility-high-contrast xmp {
-    color: $white !important; // sass-lint:disable-line no-important
+body.accessibility-high-contrast video {
+    color: #fff !important;
 }
 
 body.accessibility-high-contrast,
@@ -272,25 +281,19 @@ body.accessibility-high-contrast address,
 body.accessibility-high-contrast article,
 body.accessibility-high-contrast aside,
 body.accessibility-high-contrast b,
-body.accessibility-high-contrast basefont,
 body.accessibility-high-contrast bdi,
-body.accessibility-high-contrast big,
-body.accessibility-high-contrast blink,
 body.accessibility-high-contrast blockquote,
 body.accessibility-high-contrast body,
 body.accessibility-high-contrast canvas,
 body.accessibility-high-contrast caption,
-body.accessibility-high-contrast center,
 body.accessibility-high-contrast cite,
 body.accessibility-high-contrast code,
 body.accessibility-high-contrast col,
 body.accessibility-high-contrast colgroup,
-body.accessibility-high-contrast command,
 body.accessibility-high-contrast dd,
 body.accessibility-high-contrast del,
 body.accessibility-high-contrast details,
 body.accessibility-high-contrast dfn,
-body.accessibility-high-contrast dir,
 body.accessibility-high-contrast div,
 body.accessibility-high-contrast dl,
 body.accessibility-high-contrast dt,
@@ -306,7 +309,6 @@ body.accessibility-high-contrast h1 a,
 body.accessibility-high-contrast h1 a b,
 body.accessibility-high-contrast h1 abbr,
 body.accessibility-high-contrast h1 b,
-body.accessibility-high-contrast h1 center,
 body.accessibility-high-contrast h1 em,
 body.accessibility-high-contrast h1 i,
 body.accessibility-high-contrast h1 span,
@@ -316,7 +318,6 @@ body.accessibility-high-contrast h2 a,
 body.accessibility-high-contrast h2 a b,
 body.accessibility-high-contrast h2 abbr,
 body.accessibility-high-contrast h2 b,
-body.accessibility-high-contrast h2 center,
 body.accessibility-high-contrast h2 em,
 body.accessibility-high-contrast h2 i,
 body.accessibility-high-contrast h2 span,
@@ -326,7 +327,6 @@ body.accessibility-high-contrast h3 a,
 body.accessibility-high-contrast h3 a b,
 body.accessibility-high-contrast h3 abbr,
 body.accessibility-high-contrast h3 b,
-body.accessibility-high-contrast h3 center,
 body.accessibility-high-contrast h3 em,
 body.accessibility-high-contrast h3 i,
 body.accessibility-high-contrast h3 span,
@@ -336,7 +336,6 @@ body.accessibility-high-contrast h4 a,
 body.accessibility-high-contrast h4 a b,
 body.accessibility-high-contrast h4 abbr,
 body.accessibility-high-contrast h4 b,
-body.accessibility-high-contrast h4 center,
 body.accessibility-high-contrast h4 em,
 body.accessibility-high-contrast h4 i,
 body.accessibility-high-contrast h4 span,
@@ -346,7 +345,6 @@ body.accessibility-high-contrast h5 a,
 body.accessibility-high-contrast h5 a b,
 body.accessibility-high-contrast h5 abbr,
 body.accessibility-high-contrast h5 b,
-body.accessibility-high-contrast h5 center,
 body.accessibility-high-contrast h5 em,
 body.accessibility-high-contrast h5 i,
 body.accessibility-high-contrast h5 span,
@@ -356,7 +354,6 @@ body.accessibility-high-contrast h6 a,
 body.accessibility-high-contrast h6 a b,
 body.accessibility-high-contrast h6 abbr,
 body.accessibility-high-contrast h6 b,
-body.accessibility-high-contrast h6 center,
 body.accessibility-high-contrast h6 em,
 body.accessibility-high-contrast h6 i,
 body.accessibility-high-contrast h6 span,
@@ -372,21 +369,16 @@ body.accessibility-high-contrast kbd,
 body.accessibility-high-contrast label,
 body.accessibility-high-contrast legend,
 body.accessibility-high-contrast li,
-body.accessibility-high-contrast listing,
 body.accessibility-high-contrast main,
 body.accessibility-high-contrast mark,
-body.accessibility-high-contrast marquee,
 body.accessibility-high-contrast menu,
 body.accessibility-high-contrast meter,
-body.accessibility-high-contrast multicol,
-body.accessibility-high-contrast nav:not(.accessibility-toolbar),
-body.accessibility-high-contrast nobr,
+body.accessibility-high-contrast nav,
 body.accessibility-high-contrast object,
 body.accessibility-high-contrast ol,
 body.accessibility-high-contrast option,
 body.accessibility-high-contrast output,
 body.accessibility-high-contrast p,
-body.accessibility-high-contrast plaintext,
 body.accessibility-high-contrast pre,
 body.accessibility-high-contrast progress,
 body.accessibility-high-contrast q,
@@ -399,7 +391,6 @@ body.accessibility-high-contrast samp,
 body.accessibility-high-contrast section,
 body.accessibility-high-contrast small,
 body.accessibility-high-contrast span,
-body.accessibility-high-contrast strike,
 body.accessibility-high-contrast strong,
 body.accessibility-high-contrast sub,
 body.accessibility-high-contrast summary,
@@ -414,14 +405,11 @@ body.accessibility-high-contrast th,
 body.accessibility-high-contrast thead,
 body.accessibility-high-contrast time,
 body.accessibility-high-contrast tr,
-body.accessibility-high-contrast tt,
 body.accessibility-high-contrast u,
 body.accessibility-high-contrast ul,
 body.accessibility-high-contrast var,
-body.accessibility-high-contrast video,
-body.accessibility-high-contrast xmp {
-    background: $black !important; // sass-lint:disable-line no-important
-    background-color: $black !important; // sass-lint:disable-line no-important
+body.accessibility-high-contrast video {
+    background: #000 !important;
 }
 
 body.accessibility-high-contrast a,
@@ -431,26 +419,20 @@ body.accessibility-high-contrast address,
 body.accessibility-high-contrast article,
 body.accessibility-high-contrast aside,
 body.accessibility-high-contrast b,
-body.accessibility-high-contrast basefont,
 body.accessibility-high-contrast bdi,
-body.accessibility-high-contrast big,
-body.accessibility-high-contrast blink,
 body.accessibility-high-contrast blockquote,
 body.accessibility-high-contrast body,
 body.accessibility-high-contrast button,
 body.accessibility-high-contrast canvas,
 body.accessibility-high-contrast caption,
-body.accessibility-high-contrast center,
 body.accessibility-high-contrast cite,
 body.accessibility-high-contrast code,
 body.accessibility-high-contrast col,
 body.accessibility-high-contrast colgroup,
-body.accessibility-high-contrast command,
 body.accessibility-high-contrast dd,
 body.accessibility-high-contrast del,
 body.accessibility-high-contrast details,
 body.accessibility-high-contrast dfn,
-body.accessibility-high-contrast dir,
 body.accessibility-high-contrast div,
 body.accessibility-high-contrast dl,
 body.accessibility-high-contrast dt,
@@ -466,7 +448,6 @@ body.accessibility-high-contrast h1 a,
 body.accessibility-high-contrast h1 a b,
 body.accessibility-high-contrast h1 abbr,
 body.accessibility-high-contrast h1 b,
-body.accessibility-high-contrast h1 center,
 body.accessibility-high-contrast h1 em,
 body.accessibility-high-contrast h1 i,
 body.accessibility-high-contrast h1 span,
@@ -476,7 +457,6 @@ body.accessibility-high-contrast h2 a,
 body.accessibility-high-contrast h2 a b,
 body.accessibility-high-contrast h2 abbr,
 body.accessibility-high-contrast h2 b,
-body.accessibility-high-contrast h2 center,
 body.accessibility-high-contrast h2 em,
 body.accessibility-high-contrast h2 i,
 body.accessibility-high-contrast h2 span,
@@ -486,7 +466,6 @@ body.accessibility-high-contrast h3 a,
 body.accessibility-high-contrast h3 a b,
 body.accessibility-high-contrast h3 abbr,
 body.accessibility-high-contrast h3 b,
-body.accessibility-high-contrast h3 center,
 body.accessibility-high-contrast h3 em,
 body.accessibility-high-contrast h3 i,
 body.accessibility-high-contrast h3 span,
@@ -496,7 +475,6 @@ body.accessibility-high-contrast h4 a,
 body.accessibility-high-contrast h4 a b,
 body.accessibility-high-contrast h4 abbr,
 body.accessibility-high-contrast h4 b,
-body.accessibility-high-contrast h4 center,
 body.accessibility-high-contrast h4 em,
 body.accessibility-high-contrast h4 i,
 body.accessibility-high-contrast h4 span,
@@ -506,7 +484,6 @@ body.accessibility-high-contrast h5 a,
 body.accessibility-high-contrast h5 a b,
 body.accessibility-high-contrast h5 abbr,
 body.accessibility-high-contrast h5 b,
-body.accessibility-high-contrast h5 center,
 body.accessibility-high-contrast h5 em,
 body.accessibility-high-contrast h5 i,
 body.accessibility-high-contrast h5 span,
@@ -516,7 +493,6 @@ body.accessibility-high-contrast h6 a,
 body.accessibility-high-contrast h6 a b,
 body.accessibility-high-contrast h6 abbr,
 body.accessibility-high-contrast h6 b,
-body.accessibility-high-contrast h6 center,
 body.accessibility-high-contrast h6 em,
 body.accessibility-high-contrast h6 i,
 body.accessibility-high-contrast h6 span,
@@ -533,21 +509,16 @@ body.accessibility-high-contrast kbd,
 body.accessibility-high-contrast label,
 body.accessibility-high-contrast legend,
 body.accessibility-high-contrast li,
-body.accessibility-high-contrast listing,
 body.accessibility-high-contrast main,
 body.accessibility-high-contrast mark,
-body.accessibility-high-contrast marquee,
 body.accessibility-high-contrast menu,
 body.accessibility-high-contrast meter,
-body.accessibility-high-contrast multicol,
 body.accessibility-high-contrast nav,
-body.accessibility-high-contrast nobr,
 body.accessibility-high-contrast object,
 body.accessibility-high-contrast ol,
 body.accessibility-high-contrast option,
 body.accessibility-high-contrast output,
 body.accessibility-high-contrast p,
-body.accessibility-high-contrast plaintext,
 body.accessibility-high-contrast pre,
 body.accessibility-high-contrast progress,
 body.accessibility-high-contrast q,
@@ -561,7 +532,6 @@ body.accessibility-high-contrast section,
 body.accessibility-high-contrast select,
 body.accessibility-high-contrast small,
 body.accessibility-high-contrast span,
-body.accessibility-high-contrast strike,
 body.accessibility-high-contrast strong,
 body.accessibility-high-contrast sub,
 body.accessibility-high-contrast summary,
@@ -576,62 +546,52 @@ body.accessibility-high-contrast th,
 body.accessibility-high-contrast thead,
 body.accessibility-high-contrast time,
 body.accessibility-high-contrast tr,
-body.accessibility-high-contrast tt,
 body.accessibility-high-contrast u,
 body.accessibility-high-contrast ul,
 body.accessibility-high-contrast var,
-body.accessibility-high-contrast video,
-body.accessibility-high-contrast xmp {
-    background-image: none !important; // sass-lint:disable-line no-important
-    text-shadow: none !important; // sass-lint:disable-line no-important
-    user-select: text !important; // sass-lint:disable-line no-important
+body.accessibility-high-contrast video {
+    background-image: none !important;
+    text-shadow: none !important;
+    user-select: text !important;
 }
 
 body.accessibility-high-contrast h1,
 body.accessibility-high-contrast h1 a,
 body.accessibility-high-contrast h1 a b,
 body.accessibility-high-contrast h1 abbr,
-body.accessibility-high-contrast h1 center,
 body.accessibility-high-contrast h1 span,
 body.accessibility-high-contrast h2,
 body.accessibility-high-contrast h2 a,
 body.accessibility-high-contrast h2 a b,
 body.accessibility-high-contrast h2 abbr,
-body.accessibility-high-contrast h2 center,
 body.accessibility-high-contrast h2 span,
 body.accessibility-high-contrast h3,
 body.accessibility-high-contrast h3 a,
 body.accessibility-high-contrast h3 a b,
 body.accessibility-high-contrast h3 abbr,
-body.accessibility-high-contrast h3 center,
 body.accessibility-high-contrast h3 span,
 body.accessibility-high-contrast h4,
 body.accessibility-high-contrast h4 a,
 body.accessibility-high-contrast h4 a b,
 body.accessibility-high-contrast h4 abbr,
-body.accessibility-high-contrast h4 center,
 body.accessibility-high-contrast h4 span,
 body.accessibility-high-contrast h5,
 body.accessibility-high-contrast h5 a,
 body.accessibility-high-contrast h5 a b,
 body.accessibility-high-contrast h5 abbr,
-body.accessibility-high-contrast h5 center,
 body.accessibility-high-contrast h5 span,
 body.accessibility-high-contrast h6,
 body.accessibility-high-contrast h6 a,
 body.accessibility-high-contrast h6 a b,
 body.accessibility-high-contrast h6 abbr,
-body.accessibility-high-contrast h6 center,
 body.accessibility-high-contrast h6 span {
-    color: #40C090 !important; // sass-lint:disable-line hex-notation no-important
+    color: #40c090 !important;
 }
 
 body.accessibility-high-contrast button,
 body.accessibility-high-contrast button abbr,
 body.accessibility-high-contrast button acronym,
 body.accessibility-high-contrast button b,
-body.accessibility-high-contrast button basefont,
-body.accessibility-high-contrast button big,
 body.accessibility-high-contrast button br,
 body.accessibility-high-contrast button code,
 body.accessibility-high-contrast button div,
@@ -650,17 +610,14 @@ body.accessibility-high-contrast button rt,
 body.accessibility-high-contrast button ruby,
 body.accessibility-high-contrast button samp,
 body.accessibility-high-contrast button small,
-body.accessibility-high-contrast button span,
+body.accessibility-high-contrast button span:not(.accessibility-icon),
 body.accessibility-high-contrast button strong,
-body.accessibility-high-contrast button tt,
 body.accessibility-high-contrast button u,
 body.accessibility-high-contrast button var,
 body.accessibility-high-contrast a:link,
 body.accessibility-high-contrast a:link abbr,
 body.accessibility-high-contrast a:link acronym,
 body.accessibility-high-contrast a:link b,
-body.accessibility-high-contrast a:link basefont,
-body.accessibility-high-contrast a:link big,
 body.accessibility-high-contrast a:link br,
 body.accessibility-high-contrast a:link code,
 body.accessibility-high-contrast a:link div,
@@ -681,18 +638,15 @@ body.accessibility-high-contrast a:link samp,
 body.accessibility-high-contrast a:link small,
 body.accessibility-high-contrast a:link span,
 body.accessibility-high-contrast a:link strong,
-body.accessibility-high-contrast a:link tt,
 body.accessibility-high-contrast a:link u,
 body.accessibility-high-contrast a:link var {
-    color: #0080FF !important; // sass-lint:disable-line hex-notation no-important
+    color: #0080ff !important;
 }
 
 body.accessibility-high-contrast button:hover,
 body.accessibility-high-contrast button:hover abbr,
 body.accessibility-high-contrast button:hover acronym,
 body.accessibility-high-contrast button:hover b,
-body.accessibility-high-contrast button:hover basefont,
-body.accessibility-high-contrast button:hover big,
 body.accessibility-high-contrast button:hover br,
 body.accessibility-high-contrast button:hover code,
 body.accessibility-high-contrast button:hover div,
@@ -713,15 +667,12 @@ body.accessibility-high-contrast button:hover samp,
 body.accessibility-high-contrast button:hover small,
 body.accessibility-high-contrast button:hover span,
 body.accessibility-high-contrast button:hover strong,
-body.accessibility-high-contrast button:hover tt,
 body.accessibility-high-contrast button:hover u,
 body.accessibility-high-contrast button:hover var,
 body.accessibility-high-contrast a:link:hover,
 body.accessibility-high-contrast a:link:hover abbr,
 body.accessibility-high-contrast a:link:hover acronym,
 body.accessibility-high-contrast a:link:hover b,
-body.accessibility-high-contrast a:link:hover basefont,
-body.accessibility-high-contrast a:link:hover big,
 body.accessibility-high-contrast a:link:hover br,
 body.accessibility-high-contrast a:link:hover code,
 body.accessibility-high-contrast a:link:hover div,
@@ -742,15 +693,12 @@ body.accessibility-high-contrast a:link:hover samp,
 body.accessibility-high-contrast a:link:hover small,
 body.accessibility-high-contrast a:link:hover span,
 body.accessibility-high-contrast a:link:hover strong,
-body.accessibility-high-contrast a:link:hover tt,
 body.accessibility-high-contrast a:link:hover u,
 body.accessibility-high-contrast a:link:hover var,
 body.accessibility-high-contrast a:visited:hover,
 body.accessibility-high-contrast a:visited:hover abbr,
 body.accessibility-high-contrast a:visited:hover acronym,
 body.accessibility-high-contrast a:visited:hover b,
-body.accessibility-high-contrast a:visited:hover basefont,
-body.accessibility-high-contrast a:visited:hover big,
 body.accessibility-high-contrast a:visited:hover br,
 body.accessibility-high-contrast a:visited:hover code,
 body.accessibility-high-contrast a:visited:hover div,
@@ -771,19 +719,16 @@ body.accessibility-high-contrast a:visited:hover samp,
 body.accessibility-high-contrast a:visited:hover small,
 body.accessibility-high-contrast a:visited:hover span,
 body.accessibility-high-contrast a:visited:hover strong,
-body.accessibility-high-contrast a:visited:hover tt,
 body.accessibility-high-contrast a:visited:hover u,
 body.accessibility-high-contrast a:visited:hover var {
-    background: #400000 !important; // sass-lint:disable-line hex-notation no-important
-    background-color: #400000 !important; // sass-lint:disable-line hex-notation no-important
+    background: #400000 !important;
+    background-color: #400000 !important;
 }
 
 body.accessibility-high-contrast a:visited,
 body.accessibility-high-contrast a:visited abbr,
 body.accessibility-high-contrast a:visited acronym,
 body.accessibility-high-contrast a:visited b,
-body.accessibility-high-contrast a:visited basefont,
-body.accessibility-high-contrast a:visited big,
 body.accessibility-high-contrast a:visited br,
 body.accessibility-high-contrast a:visited code,
 body.accessibility-high-contrast a:visited div,
@@ -804,10 +749,9 @@ body.accessibility-high-contrast a:visited samp,
 body.accessibility-high-contrast a:visited small,
 body.accessibility-high-contrast a:visited span,
 body.accessibility-high-contrast a:visited strong,
-body.accessibility-high-contrast a:visited tt,
 body.accessibility-high-contrast a:visited u,
 body.accessibility-high-contrast a:visited var {
-    color: #0ff !important; // sass-lint:disable-line hex-notation no-important
+    color: #0ff !important;
 }
 
 body.accessibility-high-contrast button:not(.accessibility-button):not(.accessibility-toggle-button),
@@ -817,219 +761,168 @@ body.accessibility-high-contrast select,
 body.accessibility-high-contrast table,
 body.accessibility-high-contrast td,
 body.accessibility-high-contrast th,
-body.accessibility-high-contrast tr,
-body.accessibility-high-contrast tt {
-    border: 1px solid $white !important; // sass-lint:disable-line no-important
+body.accessibility-high-contrast tr {
+    border: 1px solid #fff !important;
 }
 
 body.accessibility-high-contrast div[role='button'],
 body.accessibility-high-contrast input[type='button'],
 body.accessibility-high-contrast input[type='submit'] {
-    background: #600040 !important; // sass-lint:disable-line no-important
-    background-color: #600040 !important; // sass-lint:disable-line hex-notation no-important
+    background: #600040 !important;
+    background-color: #600040 !important;
 }
 
+body.accessibility-high-contrast .accessibility-title,
+body.accessibility-high-contrast .accessibility-icon {
+    color: #fff !important;
+}
+
+/* Negative contrast filter */
+body.accessibility-negative-contrast input::placeholder,
 body.accessibility-negative-contrast,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) {
-    background: $black !important; // sass-lint:disable-line no-important
-    color: $white !important; // sass-lint:disable-line no-important
-}
-
-body.accessibility-negative-contrast input::placeholder {
-    background: $black !important; // sass-lint:disable-line no-important
-    color: $white !important; // sass-lint:disable-line no-important
+body.accessibility-negative-contrast *,
+body.accessibility-negative-contrast .accessibility-icon,
+body.accessibility-negative-contrast .accessibility-title {
+    background: #000 !important;
+    color: #fff !important;
 }
 
 body.accessibility-negative-contrast a,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) a,
 body.accessibility-negative-contrast b,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) b,
 body.accessibility-negative-contrast blockquote,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) blockquote,
 body.accessibility-negative-contrast button,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) button,
 body.accessibility-negative-contrast canvas,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) canvas,
 body.accessibility-negative-contrast caption,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) caption,
-body.accessibility-negative-contrast center,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) center,
 body.accessibility-negative-contrast cite,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) cite,
 body.accessibility-negative-contrast code,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) code,
 body.accessibility-negative-contrast col,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) col,
 body.accessibility-negative-contrast colgroup,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) colgroup,
 body.accessibility-negative-contrast dd,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) dd,
 body.accessibility-negative-contrast details,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) details,
 body.accessibility-negative-contrast dfn,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) dfn,
-body.accessibility-negative-contrast dir,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) dir,
 body.accessibility-negative-contrast div,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) div,
 body.accessibility-negative-contrast dl,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) dl,
 body.accessibility-negative-contrast dt,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) dt,
 body.accessibility-negative-contrast em,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) em,
 body.accessibility-negative-contrast embed,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) embed,
 body.accessibility-negative-contrast fieldset,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) fieldset,
 body.accessibility-negative-contrast figcaption,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) figcaption,
 body.accessibility-negative-contrast figure,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) figure,
 body.accessibility-negative-contrast footer,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) footer,
 body.accessibility-negative-contrast form,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) form,
 body.accessibility-negative-contrast header,
 body.accessibility-negative-contrast i,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) i,
 body.accessibility-negative-contrast iframe,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) iframe,
 body.accessibility-negative-contrast img,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) img,
 body.accessibility-negative-contrast input,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) input,
 body.accessibility-negative-contrast kbd,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) kbd,
 body.accessibility-negative-contrast label,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) label,
 body.accessibility-negative-contrast legend,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) legend,
 body.accessibility-negative-contrast li,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) li,
 body.accessibility-negative-contrast mark,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) mark,
 body.accessibility-negative-contrast menu,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) menu,
 body.accessibility-negative-contrast meter,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) meter,
 body.accessibility-negative-contrast nav,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) nav,
-body.accessibility-negative-contrast nobr,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) nobr,
 body.accessibility-negative-contrast object,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) object,
 body.accessibility-negative-contrast ol,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) ol,
 body.accessibility-negative-contrast option,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) option,
 body.accessibility-negative-contrast pre,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) pre,
 body.accessibility-negative-contrast progress,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) progress,
 body.accessibility-negative-contrast q,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) q,
 body.accessibility-negative-contrast s,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) s,
 body.accessibility-negative-contrast section,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) section,
 body.accessibility-negative-contrast select,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) select,
 body.accessibility-negative-contrast small,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) small,
 body.accessibility-negative-contrast span,
-body.accessibility-negative-contrast span:not(.accessibility-title):not(.accessibility-icon),
-body.accessibility-negative-contrast strike,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) strike,
+body.accessibility-negative-contrast span:not(.accessibility-icon):not(.accessibility-title),
 body.accessibility-negative-contrast strong,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) strong,
 body.accessibility-negative-contrast sub,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) sub,
 body.accessibility-negative-contrast summary,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) summary,
 body.accessibility-negative-contrast sup,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) sup,
 body.accessibility-negative-contrast table,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) table,
 body.accessibility-negative-contrast td,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) td,
 body.accessibility-negative-contrast textarea,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) textarea,
 body.accessibility-negative-contrast th,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) th,
 body.accessibility-negative-contrast time,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) time,
 body.accessibility-negative-contrast tr,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) tr,
-body.accessibility-negative-contrast tt,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) tt,
 body.accessibility-negative-contrast u,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) u,
 body.accessibility-negative-contrast ul,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) ul,
 body.accessibility-negative-contrast var,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) var,
 body.accessibility-negative-contrast a span,
 body.accessibility-negative-contrast *:not(.accessibility-toolbar) a span,
-body.accessibility-negative-contrast strong,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar) strong {
-    color: #ff0 !important; // sass-lint:disable-line no-important
+body.accessibility-negative-contrast strong {
+    color: #ff0 !important;
 }
 
 body.accessibility-negative-contrast button,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar button),
 body.accessibility-negative-contrast input,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar input),
 body.accessibility-negative-contrast textarea,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar textarea),
 body.accessibility-negative-contrast select,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar select),
 body.accessibility-negative-contrast table,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar table),
 body.accessibility-negative-contrast td,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar td),
 body.accessibility-negative-contrast th,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar th),
 body.accessibility-negative-contrast tr,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar tr),
-body.accessibility-negative-contrast tt,
-body.accessibility-negative-contrast *:not(.accessibility-toolbar tt) {
-    border: 1px solid $white !important; // sass-lint:disable-line no-important
+body.accessibility-negative-contrast tt {
+    border: 1px solid #fff !important;
 }
 
+body.accessibility-negative-contrast .accessibility {
+    border: 1px solid #334be8 !important;
+
+    * {
+        border: 0 !important;
+    }
+
+    .accessibility-toggle-button {
+        left: calc(100% + 1px);
+    }
+}
+
+/* Light background filter */
 body.accessibility-light-background,
-body.accessibility-light-background *:not(.accessibility):not(.accessibility-item):not(.accessibility-toggle-button):not(.accessibility-button-active) {
-    background: $white !important; // sass-lint:disable-line no-important
-    color: $black !important; // sass-lint:disable-line no-important
+body.accessibility-light-background *:not(.accessibility):not(.accessibility-item):not(.accessibility-toggle-button):not(.accessibility-button-active),
+body.accessibility-light-background .accessibility-toggle-button::after {
+    background: #fff !important;
+    color: #000 !important;
 }
 
+/* Links and buttons underline */
 body.accessibility-links-underline a,
 body.accessibility-links-underline a *,
-body.accessibility-links-underline button,
+body.accessibility-links-underline button:not(.accessibility-toggle-button),
 body.accessibility-links-underline button * {
-    text-decoration: underline !important; // sass-lint:disable-line no-important
+    text-decoration: underline !important;
 }
 
+/* Readable font */
 body.accessibility-readable-font,
 body.accessibility-readable-font *:not(i):not(span) {
-    font-family: Verdana, Arial, Helvetica, sans-serif !important; // sass-lint:disable-line no-important
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
 }
 
+/* IE - removed grayscale/ IE not supporting grayscale  */
 @media screen and (-ms-high-contrast: active),
 screen and (-ms-high-contrast: none) {
-
 
     .accessibility-buttons li:nth-of-type(3) {
         display: none !important;
     }
+
+    body.accessibility-negative-contrast .accessibility-icon,
+    body.accessibility-negative-contrast .accessibility-title,
+    body.accessibility-negative-contrast,
+    body.accessibility-negative-contrast * {
+        background: #000 !important;
+        color: #fff !important;
+    }
 }
 
-// @supports (-ms-ime-align: auto) {
-//     body.accessibility-high-contrast .accessibility-title {
-//         color: $white !important;
-//     }
-// }
-
-body.accessibility-high-contrast .accessibility-title {
-    color: $white !important;
+@supports (-ms-ime-align:auto) {
+    body.accessibility-negative-contrast .accessibility-icon,
+    body.accessibility-negative-contrast .accessibility-title,
+    body.accessibility-negative-contrast,
+    body.accessibility-negative-contrast * {
+        background: #000 !important;
+        color: #fff !important;
+    }
 }

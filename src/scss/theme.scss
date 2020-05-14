@@ -82,51 +82,6 @@ a:hover {
 	}
 }
 
-// uikit/form
-.uk-input:not(.uk-form-danger),
-.uk-select:not(.uk-form-danger),
-.uk-textarea:not(.uk-form-danger),
-.uk-checkbox:not(.uk-form-danger),
-.uk-radio:not(.uk-form-danger),
-.uk-checkbox:checked:not(.uk-form-danger),
-.uk-radio:checked:not(.uk-form-danger) {
-	border-color: $nbBlack;
-}
-
-// theme/header
-#nav {
-
-	@media (max-width: $breakpointXsmallMax) {
-		background-color: $nbWhite;
-		border-top: 1px solid $nbOffWhite;
-		height: calc(100% - 80px);
-		left: 0;
-		overflow: auto;
-		position: fixed;
-		top: 80px;
-		width: 100%;
-
-		&.nav-toggle {
-			display: none;
-		}
-
-		.uk-navbar-nav {
-			display: block;
-			padding-bottom: $nbGutter;
-			padding-top: $nbGutter;
-		}
-
-		.uk-navbar-item,
-		.uk-navbar-nav > li > a,
-		.uk-navbar-toggle {
-			display: block;
-			min-height: 0;
-			padding-bottom: $nbGutter;
-			padding-top: $nbGutter;
-		}
-	}
-}
-
 // theme/footer
 .footer {
 	font-size: 0.9rem;
