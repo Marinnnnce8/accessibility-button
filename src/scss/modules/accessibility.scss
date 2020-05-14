@@ -121,6 +121,14 @@
     }
 }
 
+.accessibility-button-active {
+    background-color: $blue;
+
+    span {
+        color: $white;
+    }
+}
+
 $sizes: 130,
 140,
 150,
