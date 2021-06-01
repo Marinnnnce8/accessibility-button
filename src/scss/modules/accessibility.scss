@@ -900,7 +900,7 @@ body.accessibility-readable-font *:not(i):not(span) {
     font-family: Verdana, Arial, Helvetica, sans-serif !important;
 }
 
-/* IE - removed grayscale/ IE not supporting grayscale  */
+/* IE only */
 @media screen and (-ms-high-contrast: active),
 screen and (-ms-high-contrast: none) {
 
@@ -917,6 +917,7 @@ screen and (-ms-high-contrast: none) {
     }
 }
 
+/* Edge only */
 @supports (-ms-ime-align:auto) {
     body.accessibility-negative-contrast .accessibility-icon,
     body.accessibility-negative-contrast .accessibility-title,
